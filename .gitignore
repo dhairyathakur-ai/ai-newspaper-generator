@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Hugging Face model cache
+.cache/
+huggingface_cache/
+
+# Generated files
+*.log

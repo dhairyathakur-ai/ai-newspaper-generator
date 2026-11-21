@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Newspaper Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>THE AI DAILY</h1>
+        <p>AI Powered Newspaper Generator</p>
+    </header>
+
+    <main>
+
+        <h2>Create Your News</h2>
+
+        <form method="POST">
+
+            <label>Enter News Headline</label>
+
+            <input
+                type="text"
+                name="headline"
+                placeholder="Enter your headline..."
+                required
+            >
+
+            <label>Enter News Article / Source Text</label>
+
+            <textarea
+                name="article"
+                placeholder="Paste your news article here..."
+                required
+            ></textarea>
+
+            <button type="submit">Generate News</button>
+
+        </form>
+
+
+        {% if summary %}
+
+        <section class="result">
+
+            <h2>{{ headline }}</h2>
+
+            <p>{{ summary }}</p>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</body>
+</html>
