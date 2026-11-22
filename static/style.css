@@ -383,3 +383,59 @@ body.dark-mode .generate-btn {
     color: var(--muted);
     letter-spacing: 1px;
 }
+/* BREAKING NEWS TICKER */
+
+.breaking-news {
+    display: flex;
+    align-items: center;
+    background: #181818;
+    color: white;
+    height: 48px;
+    overflow: hidden;
+}
+
+.breaking-label {
+    background: #b38a3c;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.ticker-wrapper {
+    overflow: hidden;
+    flex: 1;
+}
+
+.ticker-content {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 25s linear infinite;
+}
+
+.ticker-content span {
+    padding: 0 40px;
+    font-size: 13px;
+    white-space: nowrap;
+    color: #eee;
+}
+
+.ticker-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
