@@ -1,59 +1,205 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>AI Newspaper Generator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The AI Daily | Newspaper Generator</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">THE AI DAILY</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#generator">Create News</a>
+            <a href="#result">Latest News</a>
+        </div>
+
+        <button class="theme-btn" onclick="toggleTheme()">
+            🌙
+        </button>
+    </nav>
+
+
+    <!-- Masthead -->
+    <header class="masthead">
+
+        <p class="edition">THE FUTURE OF DIGITAL JOURNALISM</p>
+        <p class="date-line" id="current-date"></p>
+
         <h1>THE AI DAILY</h1>
-        <p>AI Powered Newspaper Generator</p>
+
+        <p class="tagline">
+            Intelligent News. Simplified Reading.
+        </p>
+
+        <div class="gold-line"></div>
+
     </header>
 
-    <main>
 
-        <h2>Create Your News</h2>
-
-        <form method="POST">
-
-            <label>Enter News Headline</label>
-
-            <input
-                type="text"
-                name="headline"
-                placeholder="Enter your headline..."
-                required
-            >
-
-            <label>Enter News Article / Source Text</label>
-
-            <textarea
-                name="article"
-                placeholder="Paste your news article here..."
-                required
-            ></textarea>
-
-            <button type="submit">Generate News</button>
-
-        </form>
+    <!-- Main Content -->
+    <main class="container">
 
 
+        <!-- Generator -->
+        <section class="generator-section" id="generator">
+
+            <div class="section-heading">
+                <span class="small-label">AI NEWS STUDIO</span>
+
+                <h2>Create Your Own News</h2>
+
+                <p>
+                    Enter a headline and article.
+                    Let AI transform it into a concise news story.
+                </p>
+            </div>
+
+
+            <form method="POST" class="news-form">
+
+                <div class="form-group">
+
+                    <label>NEWS HEADLINE</label>
+
+                    <input
+                        type="text"
+                        name="headline"
+                        placeholder="Enter your news headline..."
+                        value="{{ headline }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>NEWS CATEGORY</label>
+
+                    <select name="category" required>
+
+                        <option value="">Select Category</option>
+
+                        {% for cat in categories %}
+
+                        <option value="{{ cat }}"
+                        {% if category == cat %}selected{% endif %}>
+
+                            {{ cat }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>ARTICLE / SOURCE TEXT</label>
+
+                    <textarea
+                        name="article"
+                        placeholder="Paste your original news article here..."
+                        required
+                    >{{ article }}</textarea>
+
+                </div>
+
+
+                <button type="submit" class="generate-btn">
+
+                    ✦ Generate News with AI
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Generated News -->
         {% if summary %}
 
-        <section class="result">
+        <section class="result-section" id="result">
 
-            <h2>{{ headline }}</h2>
+            <div class="result-header">
 
-            <p>{{ summary }}</p>
+                <span class="small-label">AI GENERATED STORY</span>
+
+                <span class="category-badge">
+                    {{ category }}
+                </span>
+
+            </div>
+
+            <article class="news-article">
+
+                <h2>{{ headline }}</h2>
+
+                <div class="article-meta">
+                    THE AI DAILY · AI GENERATED SUMMARY
+                </div>
+
+                <div class="article-divider"></div>
+
+                <p>{{ summary }}</p>
+
+            </article>
 
         </section>
 
         {% endif %}
 
+
     </main>
 
+
+    <!-- Footer -->
+    <footer>
+
+        <h2>THE AI DAILY</h2>
+
+        <p>
+            Powered by Artificial Intelligence
+        </p>
+
+        <p class="copyright">
+            © 2026 The AI Daily. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark-mode");
+
+        }
+        document.getElementById("current-date").textContent =
+    new Date().toLocaleDateString("en-IN", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+
+    </script>
+
 </body>
+
 </html>
