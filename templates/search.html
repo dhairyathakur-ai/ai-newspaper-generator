@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search News | THE AI DAILY</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="nav-logo">THE AI DAILY</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/#generator">Create News</a>
+            <a href="/search">Search News</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Masthead -->
+    <header class="masthead">
+
+        <p class="edition">YOUR PERSONAL NEWS ARCHIVE</p>
+
+        <h1>SEARCH NEWS</h1>
+
+        <p class="tagline">
+            Find your previously generated news stories.
+        </p>
+
+        <div class="gold-line"></div>
+
+    </header>
+
+
+    <!-- Search Section -->
+    <main class="container">
+
+        <section class="generator-section">
+
+            <div class="section-heading">
+
+                <span class="small-label">NEWS ARCHIVE</span>
+
+                <h2>Find Your Stories</h2>
+
+                <p>
+                    Search by headline, category or summary.
+                </p>
+
+            </div>
+
+
+            <form action="/search" method="GET" class="news-form">
+
+                <div class="form-group">
+
+                    <label>SEARCH NEWS</label>
+
+                    <input
+                        type="text"
+                        name="q"
+                        placeholder="Search headlines, categories..."
+                        value="{{ query }}"
+                    >
+
+                </div>
+
+                <button type="submit" class="generate-btn">
+                    🔍 Search News
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Search Results -->
+        <section class="result-section">
+
+            <div class="section-heading">
+
+                <span class="small-label">SEARCH RESULTS</span>
+
+                <h2>
+                    {% if query %}
+                        Results for "{{ query }}"
+                    {% else %}
+                        Your News Archive
+                    {% endif %}
+                </h2>
+
+            </div>
+
+
+            {% if results %}
+
+                {% for news in results %}
+
+                    <article class="news-article">
+
+                        <span class="category-badge">
+                            {{ news.category }}
+                        </span>
+
+                        <h2>{{ news.headline }}</h2>
+
+                        <div class="article-meta">
+                            THE AI DAILY · {{ news.date }}
+                        </div>
+
+                        <div class="article-divider"></div>
+
+                        <p>{{ news.summary }}</p>
+
+                    </article>
+
+                {% endfor %}
+
+            {% elif query %}
+
+                <p class="no-results">
+                    No matching news found. Try another keyword.
+                </p>
+
+            {% else %}
+
+                <p class="no-results">
+                    Search for a headline or category to explore your archive.
+                </p>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h2>THE AI DAILY</h2>
+
+        <p>Powered by Artificial Intelligence</p>
+
+        <p class="copyright">
+            © 2026 The AI Daily. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -8,50 +8,65 @@
     <title>The AI Daily | Newspaper Generator</title>
 
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+        href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
     <!-- Navigation -->
     <nav class="navbar">
+
         <div class="nav-logo">THE AI DAILY</div>
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="#generator">Create News</a>
-            <a href="#result">Latest News</a>
+       <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#generator">Create News</a>
+        <a href="#result">Latest News</a>
+        <a href="/search">Search News</a>
+        <a href="/edition">Newspaper Edition</a>
         </div>
 
         <button class="theme-btn" onclick="toggleTheme()">
             🌙
         </button>
+
     </nav>
+
+
     <!-- Breaking News Ticker -->
     <div class="breaking-news">
 
-    <div class="breaking-label">
-        BREAKING NEWS
-    </div>
+        <div class="breaking-label">
+            BREAKING NEWS
+        </div>
 
-    <div class="ticker-wrapper">
-        <div class="ticker-content">
+        <div class="ticker-wrapper">
 
-            <span>✦ Welcome to THE AI DAILY</span>
-            <span>✦ AI-powered news summarization</span>
-            <span>✦ Technology, Sports, Business and Science</span>
-            <span>✦ Your News, Simplified</span>
+            <div class="ticker-content">
+
+                <span>✦ Welcome to THE AI DAILY</span>
+                <span>✦ AI-powered news summarization</span>
+                <span>✦ Technology, Sports, Business and Science</span>
+                <span>✦ Your News, Simplified</span>
+
+                <!-- Duplicate messages for continuous scrolling -->
+                <span>✦ Welcome to THE AI DAILY</span>
+                <span>✦ AI-powered news summarization</span>
+                <span>✦ Technology, Sports, Business and Science</span>
+                <span>✦ Your News, Simplified</span>
+
+            </div>
 
         </div>
-    </div>
 
-</div>
+    </div>
 
 
     <!-- Masthead -->
     <header class="masthead">
 
         <p class="edition">THE FUTURE OF DIGITAL JOURNALISM</p>
+
         <p class="date-line" id="current-date"></p>
 
         <h1>THE AI DAILY</h1>
@@ -68,11 +83,11 @@
     <!-- Main Content -->
     <main class="container">
 
-
         <!-- Generator -->
         <section class="generator-section" id="generator">
 
             <div class="section-heading">
+
                 <span class="small-label">AI NEWS STUDIO</span>
 
                 <h2>Create Your Own News</h2>
@@ -81,6 +96,7 @@
                     Enter a headline and article.
                     Let AI transform it into a concise news story.
                 </p>
+
             </div>
 
 
@@ -112,7 +128,7 @@
                         {% for cat in categories %}
 
                         <option value="{{ cat }}"
-                        {% if category == cat %}selected{% endif %}>
+                            {% if category == cat %}selected{% endif %}>
 
                             {{ cat }}
 
@@ -139,9 +155,7 @@
 
 
                 <button type="submit" class="generate-btn">
-
                     ✦ Generate News with AI
-
                 </button>
 
             </form>
@@ -164,6 +178,7 @@
 
             </div>
 
+
             <article class="news-article">
 
                 <h2>{{ headline }}</h2>
@@ -181,7 +196,6 @@
         </section>
 
         {% endif %}
-
 
     </main>
 
@@ -201,24 +215,57 @@
 
     </footer>
 
+<script>
 
-    <script>
+    // Dark Mode Toggle
+    function toggleTheme() {
 
-        function toggleTheme() {
+        document.body.classList.toggle("dark-mode");
 
-            document.body.classList.toggle("dark-mode");
+        const isDarkMode = document.body.classList.contains("dark-mode");
 
+        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+        updateThemeButton();
+
+    }
+
+
+    // Update Theme Button Icon
+    function updateThemeButton() {
+
+        const button = document.querySelector(".theme-btn");
+
+        if (document.body.classList.contains("dark-mode")) {
+            button.textContent = "☀️";
+        } else {
+            button.textContent = "🌙";
         }
-        document.getElementById("current-date").textContent =
-    new Date().toLocaleDateString("en-IN", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
+
+    }
+
+
+    // Remember Theme After Refresh
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+
+        updateThemeButton();
+
     });
 
-    </script>
 
-</body>
+    // Current Date
+    document.getElementById("current-date").textContent =
+        new Date().toLocaleDateString("en-IN", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
 
-</html>
+</script>

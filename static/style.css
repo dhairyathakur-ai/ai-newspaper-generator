@@ -439,3 +439,218 @@ body.dark-mode .generate-btn {
         transform: translateX(-50%);
     }
 }
+/* =================================
+   NEWSPAPER EDITION DESIGN
+================================= */
+
+.newspaper-page {
+    background: #f4f0e6;
+    color: #202020;
+    font-family: Georgia, serif;
+}
+
+.paper-header {
+    text-align: center;
+    padding: 25px 5%;
+    border-bottom: 4px double #222;
+}
+
+.paper-topline {
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 12px;
+}
+
+.paper-header h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(42px, 8vw, 90px);
+    letter-spacing: -3px;
+    margin: 20px 0 5px;
+    font-weight: 900;
+}
+
+.paper-tagline {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.paper-date {
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+.paper-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    padding: 16px;
+    border-bottom: 2px solid #222;
+}
+
+.paper-nav a {
+    color: #222;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.paper-nav a:hover {
+    color: #a47b30;
+}
+
+.paper-container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 25px;
+}
+
+.paper-section-title {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    border-bottom: 2px solid #222;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.featured-story {
+    padding: 35px 20px;
+    border-bottom: 3px double #222;
+    text-align: center;
+}
+
+.featured-content {
+    max-width: 850px;
+    margin: auto;
+}
+
+.paper-category {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #a47b30;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.featured-story h2 {
+    font-size: clamp(32px, 5vw, 55px);
+    line-height: 1.15;
+    margin: 10px 0 20px;
+}
+
+.featured-summary {
+    font-size: 19px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.paper-meta {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: #777;
+    margin-top: 20px;
+}
+
+.paper-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.paper-card {
+    padding: 20px 15px;
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+
+.paper-card h3 {
+    font-size: 25px;
+    line-height: 1.25;
+    margin: 10px 0;
+}
+
+.paper-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.empty-edition {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-edition h2 {
+    font-size: 32px;
+}
+
+.paper-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: #202020;
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.paper-footer {
+    text-align: center;
+    border-top: 3px double #222;
+    margin-top: 60px;
+    padding: 30px 10px;
+}
+
+.paper-footer h2 {
+    font-size: 28px;
+}
+
+.paper-footer p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+
+    .paper-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .paper-nav {
+        gap: 15px;
+    }
+
+    .paper-topline {
+        font-size: 9px;
+    }
+
+    .paper-card {
+        border-right: none;
+    }
+
+    .paper-header h1 {
+        letter-spacing: -1px;
+    }
+
+}

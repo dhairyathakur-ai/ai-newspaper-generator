@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>THE AI DAILY | Today's Edition</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="newspaper-page">
+
+    <!-- Newspaper Header -->
+    <header class="paper-header">
+
+        <div class="paper-topline">
+            <span>INDEPENDENT DIGITAL JOURNALISM</span>
+            <span>VOL. 01 | NO. 001</span>
+        </div>
+
+        <h1>THE AI DAILY</h1>
+
+        <p class="paper-tagline">
+            INTELLIGENT NEWS. UNLIMITED PERSPECTIVES.
+        </p>
+
+        <div class="paper-date">
+            {{ edition_date }}
+        </div>
+
+    </header>
+
+
+    <!-- Newspaper Navigation -->
+    <nav class="paper-nav">
+        <a href="/">HOME</a>
+        <a href="#technology">TECHNOLOGY</a>
+        <a href="#business">BUSINESS</a>
+        <a href="#sports">SPORTS</a>
+        <a href="#science">SCIENCE</a>
+        <a href="/search">ARCHIVE</a>
+    </nav>
+
+
+    <!-- Main Newspaper Content -->
+    <main class="paper-container">
+
+        <div class="paper-section-title">
+            TODAY'S TOP STORIES
+        </div>
+
+
+        <!-- Featured Story -->
+        {% if articles %}
+
+        <section class="featured-story">
+
+            <div class="featured-content">
+
+                <span class="paper-category">
+                    {{ articles[0].category }}
+                </span>
+
+                <h2>{{ articles[0].headline }}</h2>
+
+                <p class="featured-summary">
+                    {{ articles[0].summary }}
+                </p>
+
+                <span class="paper-meta">
+                    THE AI DAILY · {{ articles[0].date }}
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- Secondary Stories -->
+        <section class="paper-grid">
+
+            {% for news in articles[1:] %}
+
+            <article class="paper-card">
+
+                <span class="paper-category">
+                    {{ news.category }}
+                </span>
+
+                <h3>{{ news.headline }}</h3>
+
+                <p>{{ news.summary }}</p>
+
+                <div class="paper-meta">
+                    {{ news.date }}
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </section>
+
+        {% else %}
+
+        <div class="empty-edition">
+
+            <h2>Your newspaper is waiting!</h2>
+
+            <p>
+                No news stories have been generated yet.
+                Create your first story to begin your edition.
+            </p>
+
+            <a href="/" class="paper-button">
+                CREATE NEWS
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- Footer -->
+        <div class="paper-footer">
+            <h2>THE AI DAILY</h2>
+            <p>Powered by Artificial Intelligence</p>
+            <p>© 2026 THE AI DAILY. All rights reserved.</p>
+        </div>
+
+    </main>
+
+</body>
+</html>
